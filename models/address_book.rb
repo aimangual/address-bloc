@@ -3,7 +3,7 @@ require_relative "entry.rb"
 class AddressBook
   attr_accessor :entries
 
-  def initiliaze
+  def initialize
     @entries = []
   end
 
