@@ -35,7 +35,7 @@ RSpec.describe AddressBook do
     end
   end
 
-   context "#add_entry" do
+  context "#add_entry" do
     it "adds only one entry to the address book" do
       book = AddressBook.new
       book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')

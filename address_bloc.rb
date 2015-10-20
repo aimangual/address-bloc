@@ -1,9 +1,9 @@
- require_relative "controllers/menu_controller"
+require_relative "controllers/menu_controller"
 
+menu = MenuController.new
 
- menu = MenuController.new
+system "clear"
 
- system "clear"
- puts "Welcome to AddressBloc!"
+puts "Welcome to AddressBloc!"
 
- menu.main_menu
+menu.main_menu
