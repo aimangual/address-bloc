@@ -13,10 +13,19 @@ class MenuController
     puts "2 - Create an entry"
     puts "3 - Search for an entry"
     puts "4 - Import entries from a CSV"
+<<<<<<< HEAD
     puts "5 - Exit"
     print "Enter your selection: "
 
     selection = gets.to_i
+=======
+    puts "5 - View Entry"
+    puts "6 - Exit"
+    print "Enter your selection: "
+
+    selection = gets.to_i
+
+>>>>>>> assignment-22-menu
     case selection
     when 1
       system "clear"
@@ -35,6 +44,13 @@ class MenuController
       read_csv
       main_menu
     when 5
+<<<<<<< HEAD
+=======
+      system "clear"
+      entry_n_submenu
+      main_menu
+    when 6
+>>>>>>> assignment-22-menu
       puts "Good-bye!"
       exit(0)
     else
@@ -42,8 +58,26 @@ class MenuController
       puts "Sorry, that is not a valid input"
       main_menu
     end
+<<<<<<< HEAD
+=======
   end
  
+  def entry_n_submenu
+    print "Enter number to view: "
+    selection = gets.chomp.to_i
+
+    if selection < @address_book.entries.count
+      puts @address_book.entries[selection]
+      puts "Press enter to return to the main menu"
+      gets.chomp
+      system "clear"
+    else
+      put "#{selection} is not a valid input"
+      entry_n_submenu
+    end
+>>>>>>> assignment-22-menu
+  end
+
   def search_entries
   end
  
@@ -81,7 +115,11 @@ class MenuController
     puts "n - next entry"
     puts "d - delete entry"
     puts "e - edit this entry"
+<<<<<<< HEAD
     puts "m - return to main menu" 
+=======
+    puts "m - return to main menu"
+>>>>>>> assignment-22-menu
 
     selection = gets.chomp
  
