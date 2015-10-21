@@ -13,19 +13,16 @@ class MenuController
     puts "2 - Create an entry"
     puts "3 - Search for an entry"
     puts "4 - Import entries from a CSV"
-<<<<<<< HEAD
     puts "5 - Exit"
     print "Enter your selection: "
 
-    selection = gets.to_i
-=======
-    puts "5 - View Entry"
-    puts "6 - Exit"
-    print "Enter your selection: "
+    # selection = gets.to_i
+    # puts "5 - View Entry"
+    # puts "6 - Exit"
+    # print "Enter your selection: "
 
     selection = gets.to_i
 
->>>>>>> assignment-22-menu
     case selection
     when 1
       system "clear"
@@ -44,13 +41,10 @@ class MenuController
       read_csv
       main_menu
     when 5
-<<<<<<< HEAD
-=======
       system "clear"
       entry_n_submenu
       main_menu
     when 6
->>>>>>> assignment-22-menu
       puts "Good-bye!"
       exit(0)
     else
@@ -58,10 +52,8 @@ class MenuController
       puts "Sorry, that is not a valid input"
       main_menu
     end
-<<<<<<< HEAD
-=======
   end
- 
+
   def entry_n_submenu
     print "Enter number to view: "
     selection = gets.chomp.to_i
@@ -75,13 +67,39 @@ class MenuController
       put "#{selection} is not a valid input"
       entry_n_submenu
     end
->>>>>>> assignment-22-menu
   end
 
   def search_entries
+    print "Search by name: "
+    name = gets.chomp
+    match = @address_book.binary_search(name)
+    system "clear"
+    if match
+      puts match.to_s
+      search_submenu(match)
+    else
+      puts "No match found for #{name}"
+    end
   end
  
   def read_csv
+    print "Enter CSV file to import: "
+    file_name = gets.chomp
+
+    if file_name.empty?
+      system "clear"
+      puts "No CSV file read"
+      main_menu
+    end
+
+    begin
+      entry_count = @address_book.import_from_csv(file_name).count
+      system "clear"
+      puts "#{entry_count} new entries added from #{file_name}"
+    rescue
+      puts "#{file_name} is not a valid CSV file, please enter the name of a valid CSV file"
+      read_csv
+    end
   end
 
   def create_entry
@@ -100,6 +118,26 @@ class MenuController
     puts "New entry created"
   end
 
+  def delete_entry(entry)
+    @address_book.entries.delete(entry)
+    puts "#{entry.name} has been deleted"
+  end
+
+  def edit_entry(entry)
+    print "Updated name: "
+    name = gets.chomp
+    print "Updated phone number: "
+    phone_number = gets.chomp
+    print "Updated email: "
+    email = gets.chomp
+    entry.name = name if !name.empty?
+    entry.phone_number = phone_number if !phone_number.empty?
+    entry.email = email if !email.empty?
+    system "clear"
+    puts "Updated entry:"
+    puts entry
+  end
+
   def view_all_entries
     @address_book.entries.each do |entry|
     system "clear"
@@ -112,21 +150,20 @@ class MenuController
   end
 
   def entry_submenu(entry)
-    puts "n - next entry"
+    puts "\nn - next entry"
     puts "d - delete entry"
     puts "e - edit this entry"
-<<<<<<< HEAD
     puts "m - return to main menu" 
-=======
-    puts "m - return to main menu"
->>>>>>> assignment-22-menu
 
-    selection = gets.chomp
+    selection = $stdin.gets.chomp
  
     case selection
     when "n"
     when "d"
+      delete_entry(entry)
     when "e"
+      edit_entry(entry)
+      entry_submenu(entry)
     when "m"
       system "clear"
       main_menu
