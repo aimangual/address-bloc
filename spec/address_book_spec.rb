@@ -24,6 +24,17 @@ RSpec.describe AddressBook do
     end
   end
 
+  context "#demolish" do
+    it "should delete all entries" do
+      book.add_entry("Liliana Mangual", "832-656-8205", "liliana@esperanza.com")
+      book.add_entry("Norma Mangual", "785-452-7188", "nimangual@live.com")
+      book.add_entry("Fred Mangual", "832-123-7854", "wmangual@yahoo.com")
+
+      book.demolish
+      expect(book.entries.size).to eq 0
+    end
+  end
+  
   # context "#remove_entry" do
   #   it "removes an entry using the name, phone_number, and email address" do
   #     book = AddressBook.new

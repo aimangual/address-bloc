@@ -13,13 +13,12 @@ class MenuController
     puts "2 - Create an entry"
     puts "3 - Search for an entry"
     puts "4 - Import entries from a CSV"
-    puts "5 - Exit"
-    print "Enter your selection: "
-
-    # selection = gets.to_i
-    # puts "5 - View Entry"
-    # puts "6 - Exit"
+    # puts "5 - Exit"
     # print "Enter your selection: "
+
+    puts "5 - Remove all entries"
+    puts "6 - Exit"
+    print "Enter your selection: "
 
     selection = gets.to_i
 
@@ -42,7 +41,8 @@ class MenuController
       main_menu
     when 5
       system "clear"
-      entry_n_submenu
+      @address_book.demolish
+      puts "All entries have been demolished!"
       main_menu
     when 6
       puts "Good-bye!"
